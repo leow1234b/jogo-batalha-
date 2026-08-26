@@ -1,0 +1,927 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #263e52,
+            #0b1118 65%,
+            #040609
+        );
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   TELA INICIAL
+========================= */
+
+.start-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #243e55,
+            #05080c
+        );
+}
+
+.start-box {
+
+    width: 430px;
+
+    max-width: 92%;
+
+    padding: 35px;
+
+    text-align: center;
+
+    background: #0d151e;
+
+    border: 2px solid #d4ad4d;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.8);
+}
+
+.logo {
+    font-size: 60px;
+}
+
+.start-box h1 {
+
+    color: #ffd76a;
+
+    margin: 5px 0 10px;
+}
+
+.start-box p {
+
+    color: #9da9b5;
+
+    margin-bottom: 25px;
+}
+
+.start-box label {
+
+    display: block;
+
+    text-align: left;
+
+    margin-bottom: 7px;
+
+    font-weight: bold;
+}
+
+.start-box input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    color: white;
+
+    background: #151f2a;
+
+    border: 1px solid #536271;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 16px;
+
+    margin-bottom: 15px;
+}
+
+.start-box input:focus {
+
+    border-color: #ffd76a;
+}
+
+button {
+
+    color: white;
+
+    background:
+        linear-gradient(
+            180deg,
+            #536fff,
+            #293fc0
+        );
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 12px 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+button:hover {
+
+    transform: translateY(-2px);
+
+    filter: brightness(1.15);
+}
+
+button:disabled {
+
+    opacity: .35;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================
+   JOGO
+========================= */
+
+.game {
+
+    width: 95%;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 15px 0 30px;
+}
+
+header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: rgba(0,0,0,.55);
+
+    border: 1px solid #40515f;
+
+    border-radius: 12px;
+
+    padding: 12px 18px;
+
+    margin-bottom: 10px;
+}
+
+header h1 {
+
+    font-size: 23px;
+
+    margin: 0;
+}
+
+header p {
+
+    color: #9ba7b2;
+
+    margin: 5px 0 0;
+}
+
+.turn-box {
+
+    text-align: center;
+
+    padding: 6px 15px;
+
+    background: #172330;
+
+    border-radius: 8px;
+}
+
+.turn-box span {
+
+    display: block;
+
+    color: #87939e;
+
+    font-size: 9px;
+}
+
+.turn-box strong {
+
+    color: #ffd76a;
+
+    font-size: 22px;
+}
+
+
+/* =========================
+   PERSONAGEM
+========================= */
+
+.duelist-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.duelist-name {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.duelist-name strong {
+
+    display: block;
+}
+
+.duelist-name small {
+
+    color: #8996a2;
+
+    font-size: 11px;
+}
+
+.avatar {
+
+    width: 46px;
+
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #192632;
+
+    border: 2px solid #566878;
+
+    font-size: 25px;
+}
+
+.enemy-avatar {
+
+    background: #321d2b;
+}
+
+.character-stats {
+
+    display: flex;
+
+    gap: 7px;
+}
+
+.stat {
+
+    background: #17222c;
+
+    border: 1px solid #3d4c59;
+
+    border-radius: 6px;
+
+    padding: 6px 9px;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   VIDA
+========================= */
+
+.hp-bar {
+
+    height: 15px;
+
+    margin-top: 5px;
+
+    background: #300909;
+
+    border: 1px solid #5e6468;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.hp-fill {
+
+    height: 100%;
+
+    width: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #e32626,
+            #ff7373
+        );
+
+    transition: width .5s;
+}
+
+
+/* =========================
+   CAMPO
+========================= */
+
+.field-label {
+
+    color: #82909c;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    margin: 6px 0 4px;
+}
+
+.field {
+
+    min-height: 175px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #17482f,
+            #092518
+        );
+
+    border: 2px solid #57735d;
+
+    border-radius: 10px;
+
+    box-shadow:
+        inset 0 0 30px rgba(0,0,0,.6);
+}
+
+
+/* =========================
+   CARTAS
+========================= */
+
+.card {
+
+    width: 120px;
+
+    height: 165px;
+
+    min-width: 120px;
+
+    padding: 6px;
+
+    position: relative;
+
+    color: #111;
+
+    border: 3px solid #d6b04e;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dfa65a,
+            #864813
+        );
+
+    cursor: pointer;
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+}
+
+.card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.6);
+}
+
+.card-name {
+
+    height: 27px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.card-image {
+
+    height: 65px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: rgba(0,0,0,.25);
+
+    border-radius: 5px;
+
+    font-size: 36px;
+}
+
+.card-description {
+
+    height: 32px;
+
+    margin-top: 4px;
+
+    text-align: center;
+
+    font-size: 8px;
+}
+
+.card-stats {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+/* HP DA CARTA */
+
+.card-hp {
+
+    position: absolute;
+
+    left: 6px;
+
+    right: 6px;
+
+    bottom: 5px;
+
+    height: 9px;
+
+    background: #300909;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.card-hp-fill {
+
+    width: 100%;
+
+    height: 100%;
+
+    background: #36c95c;
+
+    transition: width .4s;
+}
+
+
+/* =========================
+   ATAQUES
+========================= */
+
+.attacking-player {
+
+    animation:
+        playerAttack .7s ease-in-out;
+}
+
+.attacking-enemy {
+
+    animation:
+        enemyAttack .7s ease-in-out;
+}
+
+.damaged {
+
+    animation:
+        damageShake .45s ease-in-out;
+}
+
+@keyframes playerAttack {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(150px) scale(1.12);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes enemyAttack {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-150px) scale(1.12);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes damageShake {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-12px);
+    }
+
+    50% {
+        transform: translateX(12px);
+    }
+
+    75% {
+        transform: translateX(-8px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================
+   MENSAGEM
+========================= */
+
+.battle-message {
+
+    min-height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 8px auto;
+
+    padding: 8px 15px;
+
+    color: #ffd76a;
+
+    background: rgba(0,0,0,.75);
+
+    border: 1px solid #5e512c;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   BOTÕES DA LUTA
+========================= */
+
+.battle-controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin: 5px auto 10px;
+
+    padding: 8px;
+
+    background: rgba(0,0,0,.35);
+
+    border: 1px solid #34434f;
+
+    border-radius: 10px;
+}
+
+.battle-controls button {
+
+    padding: 10px 14px;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MÃO
+========================= */
+
+.hand-area {
+
+    margin-top: 12px;
+
+    padding: 10px;
+
+    background: rgba(0,0,0,.3);
+
+    border-radius: 10px;
+}
+
+.hand-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 5px;
+}
+
+.hand-title h2 {
+
+    margin: 0;
+
+    font-size: 16px;
+}
+
+.hand-title span {
+
+    color: #84919c;
+
+    font-size: 10px;
+}
+
+.hand {
+
+    min-height: 170px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-end;
+
+    gap: 7px;
+
+    overflow-x: auto;
+
+    padding: 5px;
+}
+
+
+/* =========================
+   BOTÕES INFERIORES
+========================= */
+
+.bottom-controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 8px;
+}
+
+
+/* =========================
+   EXPLOSÃO
+========================= */
+
+.attack-effect {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 900;
+
+    pointer-events: none;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.attack-effect span {
+
+    font-size: 90px;
+
+    animation: explosion .55s ease-out;
+}
+
+@keyframes explosion {
+
+    0% {
+        transform: scale(.2);
+        opacity: 0;
+    }
+
+    40% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   RESULTADO
+========================= */
+
+.result-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: rgba(0,0,0,.88);
+}
+
+.result-box {
+
+    width: 400px;
+
+    max-width: 90%;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background: #101922;
+
+    border: 2px solid #d4ad4d;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 80px rgba(0,0,0,.9);
+}
+
+.result-box div {
+
+    font-size: 70px;
+}
+
+.result-box h1 {
+
+    color: #ffd76a;
+
+    font-size: 38px;
+
+    margin: 10px 0;
+}
+
+.result-box p {
+
+    color: #b1bac2;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media(max-width: 700px) {
+
+    .game {
+        width: 98%;
+    }
+
+    header {
+        padding: 9px;
+    }
+
+    header h1 {
+        font-size: 18px;
+    }
+
+    .duelist-info {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .character-stats {
+        width: 100%;
+    }
+
+    .field {
+        overflow-x: auto;
+
+        justify-content: flex-start;
+    }
+
+    .hand {
+        justify-content: flex-start;
+    }
+
+    .card {
+        width: 105px;
+
+        min-width: 105px;
+
+        height: 150px;
+    }
+
+    .card-image {
+        height: 58px;
+    }
+
+    .battle-controls button {
+        flex: 1;
+
+        min-width: 130px;
+    }
+}
